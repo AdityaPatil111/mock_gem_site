@@ -56,3 +56,12 @@ async def progress():
     total  = len(CATALOGUE)
     filled = sum(1 for i in CATALOGUE if i["make"] and i["model"] and i["hsn_code"])
     return JSONResponse({"total": total, "filled": filled, "pct": round(filled/total*100)})
+
+@app.get("/reset")
+async def reset():
+    """Clear all Make/Model/HSN fields back to empty"""
+    for item in CATALOGUE:
+        item["make"]     = ""
+        item["model"]    = ""
+        item["hsn_code"] = ""
+    return JSONResponse({"status": "reset", "message": "All fields cleared!"})
