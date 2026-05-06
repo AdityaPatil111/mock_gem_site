@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GeM — Catalogue Offering | BID GEM/2026/B/7084813</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#eef2f7;color:#1a2332;min-height:100vh}
+
+/* ── GeM Header ── */
+.gem-header{background:#003580}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:10px 28px}
+.logo-wrap{display:flex;align-items:center;gap:14px}
+.logo-box{background:#fff;padding:5px 12px;border-radius:4px;font-weight:900;font-size:1.15rem;color:#003580;letter-spacing:2px}
+.logo-box b{color:#f90}
+.logo-text{color:#fff;line-height:1.4}
+.logo-text strong{font-size:.95rem;display:block}
+.logo-text span{font-size:.75rem;color:#9bc;display:block}
+.header-right{color:#9bc;font-size:.8rem;text-align:right;line-height:1.5}
+.gem-nav{background:#00236a;display:flex;padding:0 28px}
+.gem-nav a{color:#b0c8e8;padding:9px 18px;font-size:.82rem;text-decoration:none;display:block;border-bottom:3px solid transparent;transition:all .15s}
+.gem-nav a:hover,.gem-nav a.active{color:#fff;border-bottom-color:#f90}
+
+/* ── Breadcrumb ── */
+.breadcrumb{background:#fff;border-bottom:1px solid #dde4ee;padding:8px 28px;font-size:.79rem;color:#888;display:flex;align-items:center;gap:6px}
+.breadcrumb a{color:#003580;text-decoration:none}
+.breadcrumb svg{width:12px;color:#bbb}
+
+/* ── Main ── */
+.main{max-width:1300px;margin:22px auto;padding:0 20px}
+
+/* Bid info card */
+.bid-card{background:#fff;border-radius:10px;padding:18px 24px;margin-bottom:18px;border:1px solid #dde4ee;box-shadow:0 1px 5px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.bid-title{font-size:1.05rem;font-weight:800;color:#003580}
+.bid-meta{display:flex;gap:16px;flex-wrap:wrap}
+.bid-pill{background:#e8f0fe;color:#1a56d6;padding:5px 14px;border-radius:20px;font-size:.79rem;font-weight:700}
+.bid-pill.orange{background:#fff3e0;color:#e65100}
+.bid-pill.green{background:#e8f5e9;color:#2e7d32}
+
+/* Progress bar */
+.prog-wrap{background:#fff;border-radius:10px;padding:14px 24px;margin-bottom:18px;border:1px solid #dde4ee;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.prog-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.82rem;font-weight:700;color:#444}
+.prog-track{background:#e9ecef;border-radius:20px;height:9px;overflow:hidden}
+.prog-bar{height:9px;background:linear-gradient(90deg,#28a745,#56cc73);border-radius:20px;transition:width .6s ease;width:0%}
+.prog-note{font-size:.76rem;color:#888;margin-top:5px}
+
+/* Table card */
+.table-card{background:#fff;border-radius:10px;border:1px solid #dde4ee;box-shadow:0 1px 5px rgba(0,0,0,.06);overflow:hidden}
+.table-header{padding:14px 20px;border-bottom:1px solid #edf0f5;display:flex;align-items:center;justify-content:space-between}
+.table-header h2{font-size:.95rem;font-weight:700;color:#003580}
+.auto-badge{background:#fff3cd;color:#856404;border:1px solid #ffc107;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:700;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+thead{background:#003580;color:#fff}
+thead th{padding:12px 15px;text-align:left;font-weight:600;white-space:nowrap;font-size:.8rem;letter-spacing:.2px}
+thead th:nth-child(1){width:60px;text-align:center}
+thead th:nth-child(3){width:70px;text-align:center}
+tbody tr{border-bottom:1px solid #edf0f5;transition:background .1s}
+tbody tr:hover{background:#f7f9ff}
+tbody tr:last-child{border-bottom:none}
+tbody td{padding:10px 15px;vertical-align:middle}
+.td-no{text-align:center;font-weight:800;color:#003580;font-size:.82rem}
+.td-qty{text-align:center;font-weight:700;color:#333}
+.item-title{font-weight:700;color:#1a2332;font-size:.83rem}
+
+/* Field cells */
+.field-cell{min-width:130px}
+.field-val{font-size:.82rem;color:#333;padding:4px 0}
+.field-val.empty{color:#ccc;font-style:italic}
+.field-val.filled{color:#155724;font-weight:600}
+
+/* Status */
+.status-done{background:#d4edda;color:#155724;border:1px solid #c3e6cb;padding:3px 9px;border-radius:12px;font-size:.73rem;font-weight:700;white-space:nowrap}
+.status-pending{background:#fff3cd;color:#856404;border:1px solid #ffc107;padding:3px 9px;border-radius:12px;font-size:.73rem;font-weight:700}
+
+/* Change Catalogue button */
+.btn-change{background:#fff;border:1.8px solid #003580;color:#003580;padding:6px 13px;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;gap:5px;transition:all .18s;white-space:nowrap}
+.btn-change:hover{background:#003580;color:#fff}
+.btn-change svg{width:13px;height:13px}
+
+/* Inline edit panel */
+.edit-panel{display:none;margin-top:8px;background:#f0f5ff;border:1.5px solid #b0caf0;border-radius:8px;padding:14px 16px;animation:slideIn .15s ease}
+.edit-panel.open{display:block}
+@keyframes slideIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.panel-head{font-size:.75rem;font-weight:800;color:#003580;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.fields-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:640px){.fields-row{grid-template-columns:1fr}}
+.fld label{display:block;font-size:.73rem;font-weight:700;color:#5070a0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.fld input{width:100%;border:1.5px solid #c0d0e8;border-radius:6px;padding:8px 11px;font-size:.83rem;background:#fff;transition:border .15s;font-family:inherit}
+.fld input:focus{outline:none;border-color:#003580}
+.fld input.auto-filled{border-color:#28a745!important;background:#f0fff4;color:#155724;font-weight:600}
+.panel-actions{margin-top:12px;display:flex;gap:8px}
+.btn-save{background:#003580;color:#fff;border:none;padding:8px 20px;border-radius:6px;font-size:.82rem;font-weight:800;cursor:pointer;transition:background .18s}
+.btn-save:hover{background:#0050c0}
+.btn-cancel{background:#fff;color:#666;border:1.5px solid #bbb;padding:8px 14px;border-radius:6px;font-size:.82rem;cursor:pointer}
+.btn-cancel:hover{background:#f5f5f5}
+
+/* Toast */
+.toast{position:fixed;bottom:28px;right:28px;background:#28a745;color:#fff;padding:11px 20px;border-radius:8px;font-size:.84rem;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .3s;z-index:999}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Automation overlay */
+.auto-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,35,106,.85);z-index:100;align-items:center;justify-content:center;flex-direction:column;color:#fff}
+.auto-overlay.active{display:flex}
+.auto-spinner{width:48px;height:48px;border:4px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.auto-overlay h3{font-size:1.1rem;margin-bottom:6px}
+.auto-overlay p{font-size:.85rem;color:#9bc;margin-bottom:20px}
+.auto-log{background:rgba(0,0,0,.4);border-radius:8px;padding:14px 18px;font-family:monospace;font-size:.8rem;color:#7db8e8;max-width:500px;width:90%;max-height:200px;overflow-y:auto;text-align:left;white-space:pre-wrap}
+
+footer{text-align:center;padding:22px;font-size:.76rem;color:#aaa;border-top:1px solid #dde4ee;margin-top:28px;background:#fff}
+</style>
+</head>
+<body>
+
+<!-- GeM Header -->
+<div class="gem-header">
+  <div class="header-top">
+    <div class="logo-wrap">
+      <div class="logo-box">Ge<b>M</b></div>
+      <div class="logo-text">
+        <strong>Government e Marketplace</strong>
+        <span>Ministry of Commerce &amp; Industry, Govt. of India</span>
+      </div>
+    </div>
+    <div class="header-right">Seller Portal<br><span style="color:#ffa;font-size:.82rem">🤖 Automation Target Site</span></div>
+  </div>
+  <div class="gem-nav">
+    <a href="#">Dashboard</a>
+    <a href="#" class="active">Bid Participation</a>
+    <a href="#">My Catalogue</a>
+    <a href="#">Orders</a>
+    <a href="#">Reports</a>
+    <a href="#">Help</a>
+  </div>
+</div>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="#">Home</a>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+  <a href="#">Bid Participation</a>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+  Catalogue Offering
+</div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- Bid info -->
+  <div class="bid-card">
+    <div class="bid-title">Catalogue Offering — BID NO: GEM/2026/B/7084813</div>
+    <div class="bid-meta">
+      <span class="bid-pill">📅 Dated: 16-Feb-2026</span>
+      <span class="bid-pill orange">Ref: 23BKCC004 Part 1</span>
+      <span class="bid-pill green" id="progress-pill">0 / 10 Filled</span>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="prog-wrap">
+    <div class="prog-label">
+      <span>Catalogue Fill Progress</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-bar" id="prog-bar"></div></div>
+    <div class="prog-note" id="prog-note">Waiting for automation — Run the Selenium script to auto-fill Make, Model &amp; HSN Code</div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <div class="table-header">
+      <h2>Items for Catalogue Submission (10 of 199)</h2>
+      <span class="auto-badge">🤖 Automation Ready — Give this URL to the tool</span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Sr.</th>
+            <th>Item Title (Bid Ref)</th>
+            <th>Qty</th>
+            <th>Make <small style="font-weight:400;opacity:.7">(from Item col)</small></th>
+            <th>Model <small style="font-weight:400;opacity:.7">(Item Description)</small></th>
+            <th>HSN Code</th>
+            <th>Status</th>
+            <th style="width:155px">Action</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- Automation overlay (shown when Selenium is running) -->
+<div class="auto-overlay" id="auto-overlay">
+  <div class="auto-spinner"></div>
+  <h3>🤖 Playwright Automation Running</h3>
+  <p>Auto-filling Make, Model &amp; HSN Code from Excel...</p>
+  <div class="auto-log" id="auto-log">Connecting...</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<footer>Mock GeM Portal — Automation Test Environment &nbsp;|&nbsp; BID: GEM/2026/B/7084813 &nbsp;|&nbsp; Not affiliated with Government e Marketplace</footer>
+
+<script>
+let items = [];
+
+// ── Load items on page load ─────────────────────────────────────────────────
+async function loadItems() {
+  const res = await fetch('/items');
+  items = await res.json();
+  renderTable();
+  updateProgress();
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = items.map((item, idx) => {
+    const allFilled = item.make && item.model && item.hsn_code;
+    return `
+    <tr id="row-${item.item_no}">
+      <td class="td-no">${item.item_no}</td>
+      <td><span class="item-title">${item.item_title}</span></td>
+      <td class="td-qty">${item.qty}</td>
+      <td class="field-cell">
+        <div class="field-val ${item.make ? 'filled' : 'empty'}" id="make-val-${item.item_no}">
+          ${item.make || '—'}
+        </div>
+      </td>
+      <td class="field-cell">
+        <div class="field-val ${item.model ? 'filled' : 'empty'}" id="model-val-${item.item_no}">
+          ${item.model || '—'}
+        </div>
+      </td>
+      <td class="field-cell">
+        <div class="field-val ${item.hsn_code ? 'filled' : 'empty'}" id="hsn-val-${item.item_no}">
+          ${item.hsn_code || '—'}
+        </div>
+      </td>
+      <td>
+        <span class="${allFilled ? 'status-done' : 'status-pending'}" id="status-${item.item_no}">
+          ${allFilled ? '✓ Done' : '⏳ Pending'}
+        </span>
+      </td>
+      <td>
+        <button class="btn-change" onclick="togglePanel('${item.item_no}')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+          </svg>
+          Change Catalogue
+        </button>
+        <div class="edit-panel" id="panel-${item.item_no}">
+          <div class="panel-head">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:14px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            Catalogue Details — Item ${item.item_no} &nbsp;<span style="color:#888;font-weight:400;text-transform:none;letter-spacing:0">${item.item_title}</span>
+          </div>
+          <div class="fields-row">
+            <div class="fld">
+              <label>Make (Item / Brand)</label>
+              <input type="text" id="inp-make-${item.item_no}" placeholder="e.g. 3627695" value="${item.make}"/>
+            </div>
+            <div class="fld">
+              <label>Model (Item Description)</label>
+              <input type="text" id="inp-model-${item.item_no}" placeholder="e.g. SEAL O RING" value="${item.model}"/>
+            </div>
+            <div class="fld">
+              <label>HSN Code</label>
+              <input type="text" id="inp-hsn-${item.item_no}" placeholder="e.g. 40169320" value="${item.hsn_code}"/>
+            </div>
+          </div>
+          <div class="panel-actions">
+            <button class="btn-save" onclick="saveItem('${item.item_no}')">✓ Save &amp; Continue</button>
+            <button class="btn-cancel" onclick="closePanel('${item.item_no}')">Cancel</button>
+          </div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function togglePanel(item_no) {
+  // Close all others
+  document.querySelectorAll('.edit-panel.open').forEach(p => {
+    if (p.id !== 'panel-' + item_no) p.classList.remove('open');
+  });
+  const panel = document.getElementById('panel-' + item_no);
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open'))
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closePanel(item_no) {
+  document.getElementById('panel-' + item_no).classList.remove('open');
+}
+
+async function saveItem(item_no) {
+  const make     = document.getElementById('inp-make-' + item_no).value.trim();
+  const model    = document.getElementById('inp-model-' + item_no).value.trim();
+  const hsn_code = document.getElementById('inp-hsn-' + item_no).value.trim();
+
+  const res = await fetch('/update-item', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ item_no, make, model, hsn_code })
+  });
+  const data = await res.json();
+
+  if (data.status === 'updated') {
+    // Update display cells
+    setCell('make-val-' + item_no,  make,     make);
+    setCell('model-val-' + item_no, model,    model);
+    setCell('hsn-val-' + item_no,   hsn_code, hsn_code);
+
+    // Update status badge
+    const allFilled = make && model && hsn_code;
+    const badge = document.getElementById('status-' + item_no);
+    badge.className = allFilled ? 'status-done' : 'status-pending';
+    badge.textContent = allFilled ? '✓ Done' : '⏳ Pending';
+
+    // Update local array
+    const it = items.find(i => i.item_no === item_no);
+    if (it) { it.make = make; it.model = model; it.hsn_code = hsn_code; }
+
+    closePanel(item_no);
+    updateProgress();
+    showToast(`✅ Item ${item_no} saved!`);
+  }
+}
+
+function setCell(id, val, rawVal) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = val || '—';
+  el.className = 'field-val ' + (rawVal ? 'filled' : 'empty');
+}
+
+function updateProgress() {
+  const total  = items.length;
+  const filled = items.filter(i => i.make && i.model && i.hsn_code).length;
+  const pct    = total ? Math.round(filled / total * 100) : 0;
+  document.getElementById('prog-bar').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('progress-pill').textContent = `${filled} / ${total} Filled`;
+  document.getElementById('prog-note').textContent =
+    filled === total
+      ? '🎉 All items filled! Ready for submission.'
+      : `${filled} of ${total} items filled — ${total - filled} remaining`;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── API exposed to Selenium ─────────────────────────────────────────────────
+// Selenium calls: window.autoFillItem(item_no, make, model, hsn_code)
+window.autoFillItem = async function(item_no, make, model, hsn_code) {
+  item_no = String(item_no);
+
+  // Open the panel for this item
+  const panel = document.getElementById('panel-' + item_no);
+  if (!panel) { console.error('Panel not found for item_no:', item_no); return; }
+  document.querySelectorAll('.edit-panel.open').forEach(p => p.classList.remove('open'));
+  panel.classList.add('open');
+  await sleep(200);
+
+  // Fill inputs with highlight
+  autoSet('inp-make-' + item_no,  make);
+  autoSet('inp-model-' + item_no, model);
+  autoSet('inp-hsn-' + item_no,   hsn_code);
+  await sleep(300);
+
+  // Save
+  await saveItem(item_no);
+};
+
+function autoSet(id, val) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.value = val;
+  el.classList.add('auto-filled');
+  el.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ── Poll progress (for automation overlay) ──────────────────────────────────
+let pollingActive = false;
+window.startAutoOverlay = function(logEl) {
+  pollingActive = true;
+  document.getElementById('auto-overlay').classList.add('active');
+};
+window.stopAutoOverlay = function() {
+  pollingActive = false;
+  document.getElementById('auto-overlay').classList.remove('active');
+};
+
+// Initial load
+loadItems();
+
+// Refresh every 3s to pick up server-side updates (in case of headless run)
+setInterval(async () => {
+  const res = await fetch('/items');
+  const fresh = await res.json();
+  let changed = false;
+  fresh.forEach(fi => {
+    const li = items.find(i => i.item_no === fi.item_no);
+    if (li && (li.make !== fi.make || li.model !== fi.model || li.hsn_code !== fi.hsn_code)) {
+      li.make = fi.make; li.model = fi.model; li.hsn_code = fi.hsn_code;
+      changed = true;
+    }
+  });
+  if (changed) { renderTable(); updateProgress(); }
+}, 3000);
+</script>
+</body>
+</html>
